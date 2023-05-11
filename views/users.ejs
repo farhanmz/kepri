@@ -1,0 +1,399 @@
+<%- include('head.ejs') %>
+
+  <body>
+    <!-- loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader-index"> <span></span></div>
+      <svg>
+        <defs></defs>
+        <filter id="goo">
+          <fegaussianblur in="SourceGraphic" stddeviation="11" result="blur"></fegaussianblur>
+          <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"> </fecolormatrix>
+        </filter>
+      </svg>
+    </div>
+    <!-- loader ends-->
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+          <form class="form-inline search-full col" action="#" method="get">
+            <div class="form-group w-100">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
+                    placeholder="Search .." name="q" title="" autofocus>
+                  <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">Loading...</span>
+                  </div><i class="close-search" data-feather="x"></i>
+                </div>
+                <div class="Typeahead-menu"></div>
+              </div>
+            </div>
+          </form>
+          <div class="header-logo-wrapper col-auto p-0">
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="assets/images/logo/logo.png"
+                  alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
+            </div>
+          </div>
+          <div class="nav-right col-xxl-7 col-xl-6 col-md-7 col-8 pull-right right-header p-0 ms-auto">
+            <ul class="nav-menus">
+              <li class="language-nav">
+                <div class="translate_wrapper">
+                  <div class="current_lang">
+                    <div class="lang"><i class="flag-icon flag-icon-id"></i><span class="lang-txt">ID</span></div>
+                  </div>
+                  <div class="more_lang">
+                    <div class="lang selected" data-value="id"><i class="flag-icon flag-icon-id"></i><span
+                        class="lang-txt">Indonesia<span> (ID)</span></span></div>
+                    <div class="lang selected" data-value="en"><i class="flag-icon flag-icon-us"></i><span
+                      class="lang-txt">English<span> (EN)</span></span></div>
+                  </div>
+                </div>
+              </li>
+              
+
+              <li>
+                <div class="mode">
+                  <svg>
+                    <use href="assets/svg/icon-sprite.svg#moon"></use>
+                  </svg>
+                </div>
+              </li>
+
+              <li class="profile-nav onhover-dropdown pe-0 py-0">
+                <div class="media profile-media"><img class="b-r-10" src="assets/images/dashboard/boy.png" alt="">
+                  <div class="media-body"><span><%= user.name %></span>
+                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                  </div>
+                </div>
+                <ul class="profile-dropdown onhover-show-div">
+                  <li><a href="/"><i data-feather="log-out"> </i><span>Log Out</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <script class="result-template" type="text/x-handlebars-template">
+            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+            <div class="ProfileCard-details">
+            <div class="ProfileCard-realName">{{name}}</div>
+            </div>
+            </div>
+          </script>
+          <script class="empty-template"
+            type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
+        </div>
+      </div>
+      <!-- Page Header Ends                              -->
+      <!-- Page Body Start-->
+      <div class="page-body-wrapper">
+        <!-- Page Sidebar Start-->
+        <div class="sidebar-wrapper" sidebar-layout="stroke-svg">
+          <div>
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
+                  src="assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark"
+                  src="assets/images/logo/logo_dark.png" alt=""></a>
+              <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+              <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
+            </div>
+            <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
+                  src="assets/images/logo/logo-icon.png" alt=""></a></div>
+            <nav class="sidebar-main">
+              <div id="sidebar-menu">
+                <ul class="sidebar-links" id="simple-bar">
+                  <li class="back-btn"><a href="index.html"><img class="img-fluid"
+                        src="assets/images/logo/logo-icon.png" alt=""></a>
+                    <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
+                        aria-hidden="true"></i></div>
+                  </li>
+                  <li class="pin-title sidebar-main-title">
+                    <div>
+                      <h6>Pinned</h6>
+                    </div>
+                  </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h6 class="lan-1">General</h6>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use href="assets/svg/icon-sprite.svg#stroke-home"></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>
+                      </svg><span class="lan-3">Dashboard</span></a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+              <div class="row">
+                <div class="col-6">
+                  <h3>Welcome <%= user.name %></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div id="map" style="width:100%;height:450px"></div>
+            <div class="row">
+
+              <div class="col-xxl-5 col-ed-6 col-xl-8 box-col-7">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card course-box">
+
+                      <ul class="square-group">
+                        <li class="square-1 warning"></li>
+                        <li class="square-1 primary"></li>
+                        <li class="square-2 warning1"></li>
+                        <li class="square-3 danger"></li>
+                        <li class="square-4 light"></li>
+                        <li class="square-5 warning"></li>
+                        <li class="square-6 success"></li>
+                        <li class="square-7 success"></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card course-box">
+
+                      <ul class="square-group">
+                        <li class="square-1 warning"></li>
+                        <li class="square-1 primary"></li>
+                        <li class="square-2 warning1"></li>
+                        <li class="square-3 danger"></li>
+                        <li class="square-4 light"></li>
+                        <li class="square-5 warning"></li>
+                        <li class="square-6 success"></li>
+                        <li class="square-7 success"></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3>Progress</h3><span>A <code>&lt;caption&gt;</code> functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it.</span>
+                  </div>
+                  <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <caption>List of Progress</caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Id</th>
+                              <th scope="col">Paket Pekerjaan</th>
+                              <th scope="col">Deviasi Fisik</th>
+                              <th scope="col">Deviasi Keu Fisik</th>
+                              <th scope="col">Deviasi Keuangan</th>
+                              <th scope="col">Realisasi Fisik</th>
+                              <th scope="col">Realisasi Keuangan</th>
+                              <th scope="col">Rencana Fisik</th>
+                              <th scope="col">Rencana Keuangan</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Preservasi Jalan dan Jembatan Km. 16 (Sp. Gesek) - Tanjung Uban - Sialang (Pulau Bintan)</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Pelebaran Menuju Standar Ruas Jalan Sialang- Sp. Pengundang KM.46 (Pulau Bintan)</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Penanganan Pemeliharaan Jembatan Khusus Fisabilillah (Pulau Batam - Galang)</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                              <td>0%</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-ed-3 d-xxl-block d-sm-none box-col-none">
+                <div class="card get-card overflow-hidden"> 
+                  <div class="card-header card-no-border">
+                    <h5>Do You Want to Get</h5><span class="f-14 f-w-500 f-light">Better Results?</span><a class="btn btn-primary btn-hover-effect" href="#">More details<span class="ms-1"> 
+                        <svg class="fill-icon">
+                          <use href="../assets/svg/icon-sprite.svg#arrowright"></use>
+                        </svg></span></a>
+                  </div>
+                  <div class="card-body pt-0">
+                    <div class="get-image text-center"> <img class="img-fluid" src="../assets/images/dashboard-3/better.png" alt="leptop with men vector"></div>
+                  </div>
+                  <ul class="square-group">
+                    <li class="square-1 warning"></li>
+                    <li class="square-1 primary"></li>
+                    <li class="square-2 warning1"></li>
+                    <li class="square-3 danger"></li>
+                    <li class="square-4 light"></li>
+                    <li class="square-5 warning"></li>
+                    <li class="square-6 success"></li>
+                    <li class="square-7 success"></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xxl-4 col-ed-7 col-xl-7 col-md-6 box-col-7">
+                <div class="card">
+                  <div class="card-header card-no-border">
+                    <div class="header-top">
+                      <h5 class="m-0">Serapan Dana<span class="f-14 f-w-500 ms-1 f-light"></span></h5>
+                      <div class="card-header-right-icon">
+                        <div class="dropdown icon-dropdown">
+                          <button class="btn dropdown-toggle" id="learningButton" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-more-alt"></i></button>
+                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="learningButton"><a
+                              class="dropdown-item" href="#">Today</a><a class="dropdown-item" href="#">Tomorrow</a><a
+                              class="dropdown-item" href="#">Yesterday</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body pt-0">
+                    <div class="learning-wrap">
+                      <div id="learning-chart" style="min-height: 310px;">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xxl-3 col-ed-6 col-md-5 col-sm-6 box-col-5">
+                <div class="card">
+                  <div class="card-header card-no-border">
+                    <div class="header-top">
+                      <h5>Project Schedule</h5>
+                      <div class="dropdown icon-dropdown">
+                        <button class="btn dropdown-toggle" id="upcomingdropdown" type="button"
+                          data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-more-alt"></i></button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="upcomingdropdown"><a
+                            class="dropdown-item" href="#">Today</a><a class="dropdown-item" href="#">Tomorrow</a><a
+                            class="dropdown-item" href="#">Yesterday </a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body pt-0">
+                    <div class="upcoming-event-wrap">
+                      <div id="upcomingchart" style="min-height: 310px;">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <!-- Container-fluid Ends-->
+      </div>
+      <script>
+        function initMap() {
+
+          const kepRiau = { lat: 2.1264705, lng: 106.9889073 };
+
+          const map2 = new google.maps.Map(document.getElementById("map"), {
+            zoom: 7,
+            center: kepRiau,
+          });
+
+            var markers = [];
+            var infowindow = [];
+
+            <% map4.forEach(function(value) { %>
+            // Create a new marker for each object in map4
+            var marker<%= value._id %> = new google.maps.Marker({
+                position: { lat: parseFloat(<%= value.latitude %>), lng: parseFloat(<%= value.longitude %>) },
+                map: map2,
+                title: '<%= value.name %>'
+            });
+
+            var infowindow<%= value._id %> = new google.maps.InfoWindow({
+              content: '<div><h3><a href="details?q=<%= value._id %>">' +
+                  '<%= value.name %>' +
+                  '</a></h3><p>' +
+                  '<img src="<%= value.img %>" width="500" height="250"/>' +
+                  '</p><li>' +
+                  'Paket Pekerjaan : <%= value.paket_name %>' +
+                  '</li><li>' +
+                  'Nama Penyedia : <%= value.penyedia %>' +
+                  '</li><li>' +
+                  'Description : <%= value.description %>' +
+                  '</li><li>' +
+                  'Jenis Kontrak : <%= value.jenis_kontrak %>' +
+                  '</li><li>' +
+                  'Progres Deviasi Fisik : <%= value.progres_deviasi_fisik %>' +
+                  '</li><li>' +
+                  'Progres Deviasi Keu Fisik : <%= value.progres_deviasi_keu_fisik %>' +
+                  '</li><li>' +
+                  'Progres Deviasi Keuangan : <%= value.progres_deviasi_keuangan %>' +
+                  '</li><li>' +
+                  'Progres Realisasi Fisik : <%= value.progres_realisasi_fisik %>' +
+                  '</li><li>' +
+                  'Progres Realisasi Keuangan : <%= value.progres_realisasi_keuangan %>' +
+                  '</li><li>' +
+                  'Progres Rencana Fisik : <%= value.progres_rencana_fisik %>' +
+                  '</li><li>' +
+                  'Progres Rencana Keuangan : <%= value.progres_rencana_keuangan %>' +
+                  '</li><li>' +
+                  'Sumber Dana : <%= value.sumber_dana %>' +
+                  '</li></div>',
+            });
+
+            marker<%= value._id %>.addListener("click", () => {
+              infowindow<%= value._id %>.open({
+                anchor: marker<%= value._id %>,
+                map,
+                }); 
+            });
+
+          <% }); %>
+
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAjHarlO_O6aAl_QHfgeAwl5K89M5Nvg4&callback=initMap"
+        defer>
+        </script>
+      <%- include('foot.ejs') %>
